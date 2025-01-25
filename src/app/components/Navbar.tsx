@@ -41,7 +41,7 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
             ></i>
             <div 
-                className={`absolute xl:hidden top-24 left-0 w-full bg-white flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${isMenuOpen ? "opacity-100": "opacity-0"}`} 
+                className={`absolute xl:hidden top-24 left-0 w-full bg-white flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${isMenuOpen ? "opacity-100 pointer-events-auto": "opacity-0 pointer-events-none"}`} 
                 style={{transition: "transform 0.3s ease, opacity 0.3s ease"}}
             >
                 <Link href="/">
