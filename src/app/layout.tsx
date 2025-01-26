@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="bg-slate-50"
+        className="bg-slate-50 h-screen"
       >
         <Navbar />
         <main className="px-4 md:px-6">
