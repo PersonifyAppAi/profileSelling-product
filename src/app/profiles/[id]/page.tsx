@@ -20,7 +20,7 @@ export default function ProfileDetailPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // In a real app, this would be an API call
+    // replace with api call
     const fetchProfile = async () => {
       setLoading(true)
       try {
