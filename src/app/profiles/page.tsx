@@ -53,7 +53,7 @@ export default function ProfilesPage() {
     router.push(`/profiles${newUrl}`, { scroll: false });
   };
 
-  // Placeholder API request function with all filters implemented
+  // Placeholder API request function with all filters
   const fetchProfiles = async () => {
     setIsLoading(true);
     
@@ -80,11 +80,10 @@ export default function ProfilesPage() {
       
       // Free profile unlock filter
       if (filters.freeOnly) {
-        // Placeholder logic - in a real app, you'd have a property indicating if a profile is free
-        filteredProfiles = filteredProfiles.filter((_, index) => index % 3 === 0); // Every 3rd profile is "free"
+        // Placeholder
       }
       
-      // Dream School filter
+      // School filter
       if (filters.school) {
         filteredProfiles = filteredProfiles.filter(profile => 
           profile.university.toLowerCase().includes(filters.school!.toLowerCase()) ||
@@ -104,14 +103,13 @@ export default function ProfilesPage() {
       
       // Stats & Tests filters
       if (filters.testOptional) {
-        // Placeholder: consider profiles with no SAT/ACT as test-optional
         filteredProfiles = filteredProfiles.filter(profile => 
           !profile.testScores?.sat && !profile.testScores?.act
         );
       }
       
       if (filters.notTestOptional) {
-        // Placeholder: consider profiles with SAT/ACT as not test-optional
+        
         filteredProfiles = filteredProfiles.filter(profile => 
           profile.testScores?.sat || profile.testScores?.act
         );
@@ -119,7 +117,7 @@ export default function ProfilesPage() {
       
       // High School Type filter
       if (filters.highSchoolType) {
-        // Placeholder - in a real app, you'd have high school type data
+        
         const hsTypeMap: Record<string, string[]> = {
           "public": ["1", "3", "5", "7"], // IDs of profiles with public schools
           "private": ["2", "4", "6", "8"], // IDs of profiles with private schools
@@ -165,17 +163,14 @@ export default function ProfilesPage() {
       
       // Background filters
       if (filters.legacy) {
-        // Placeholder - in a real app, you'd have legacy status data
-        filteredProfiles = filteredProfiles.filter((_, index) => index % 4 === 0); // Every 4th profile is "legacy"
+        filteredProfiles = filteredProfiles.filter((_, index) => index % 4 === 0); 
       }
       
       if (filters.notLegacy) {
-        // Placeholder - in a real app, you'd have legacy status data
         filteredProfiles = filteredProfiles.filter((_, index) => index % 4 !== 0); // Every 4th profile is "legacy"
       }
       
       if (filters.firstGen) {
-        // Placeholder - in a real app, you'd have first-gen status data
         filteredProfiles = filteredProfiles.filter(profile => 
           profile.additionalInfo?.toLowerCase().includes("first-gen") ||
           profile.additionalInfo?.toLowerCase().includes("first generation")
@@ -183,7 +178,6 @@ export default function ProfilesPage() {
       }
       
       if (filters.athlete) {
-        // Placeholder - in a real app, you'd have athlete status data
         filteredProfiles = filteredProfiles.filter(profile => 
           profile.additionalInfo?.toLowerCase().includes("athlete") ||
           profile.additionalInfo?.toLowerCase().includes("team") ||
@@ -192,7 +186,6 @@ export default function ProfilesPage() {
       }
       
       if (filters.lowIncome) {
-        // Placeholder - in a real app, you'd have income status data
         filteredProfiles = filteredProfiles.filter((_, index) => index % 5 === 0); // Every 5th profile is "low income"
       }
       
