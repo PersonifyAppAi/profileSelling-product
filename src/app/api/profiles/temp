@@ -1,0 +1,132 @@
+/*
+Only return 7-8 profiles at a time
+Apply filtering wihtout reading entire application
+allow pagination
+return both the profile and the number of pages
+*/
+
+import { NextApiRequest, NextApiResponse } from "next";
+
+interface AcademicStats {
+  gpaWeighted: number;
+  gpaUnweighted: number;
+  gpaScale: number;
+  act: number;
+  sat: number;
+  numberOfAPCourses: number;
+}
+
+interface ExtracurricularActivity {
+  name: string;
+  description: string;
+}
+
+interface APScore {
+  subjectName: string;
+  score: number;
+}
+
+interface Award {
+  name: string;
+  description: string;
+}
+
+interface Essay {
+  prompt: string;
+  essayText: string;
+  wordCount: number;
+}
+
+interface Essays {
+  [schoolName: string]: Essay[];
+}
+
+interface ProfileData {
+  id: string;
+  name: string;
+  bio: string;
+  race: string;
+  gender: string;
+  schoolType: string;
+  legacy: boolean;
+  lowIncomeStatus: boolean;
+  firstGenerationStatus: boolean;
+  internationalStatus: boolean;
+  recruitedAthlete: boolean;
+  major: string;
+
+  academicStats: AcademicStats;
+  
+  extracurricularActivities: ExtracurricularActivity[]; // max 15
+  apScores: APScore[];
+  awards: Award[];
+  
+  acceptedSchools: string[];
+  essays: Essays;
+}
+
+// Filter Interface for searching profiles
+interface ProfileFilters {
+  // School and Academic Filters
+  schoolType?: string;
+  major?: string;
+  
+  // Demographic Filters
+  race?: string;
+  gender?: string;
+  
+  // Status Filters
+  legacy?: boolean;
+  lowIncomeStatus?: boolean;
+  firstGenerationStatus?: boolean;
+  internationalStatus?: boolean;
+  recruitedAthlete?: boolean;
+  
+  // Academic Stat Filters
+  academicStats?: {
+    minGpaWeighted?: number;
+    maxGpaWeighted?: number;
+    minGpaUnweighted?: number;
+    maxGpaUnweighted?: number;
+    minACT?: number;
+    maxACT?: number;
+    minSAT?: number;
+    maxSAT?: number;
+  };
+  
+  // Pagination
+  page?: number;
+  limit?: number; // Should be 7-8
+}
+
+// API Response Interface
+interface ProfileApiResponse {
+  profiles: ProfileData[];
+  totalPages: number;
+  currentPage: number;
+}
+
+// API handler function
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ProfileApiResponse | { error: string }>
+) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  try {
+    // TODO: Implement the actual database query logic here
+    // Remember to only fetch 7-8 profiles at a time based on the current page
+    // Apply filters at the database level, not in memory
+    
+    // Placeholder response
+    res.status(200).json({
+      profiles: [],
+      totalPages: 0,
+      currentPage: 1
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch profiles' });
+  }
+}
